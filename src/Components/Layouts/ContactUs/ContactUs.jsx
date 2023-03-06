@@ -13,7 +13,6 @@ export const ContactUs = () => {
   const form = useRef();
 
   const handdleSendEmail = (event) => {
-    
     const serviceId = "service_i19tpz6";
     const emailTemplate = "template_k68vevf";
     const APIKEY = "9ByN8GiJOI-NutkJf";
@@ -21,24 +20,11 @@ export const ContactUs = () => {
     event.preventDefault();
     emailjs.sendForm(serviceId, emailTemplate, form.current, APIKEY)
 
-    .then(() => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Enviado con exito",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      },
-      () => {
-        Swal.fire({
-          icon: "error",
-          title: "Ha ocurrido un error",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    );
+    .then((result) => {
+      console.log(result.text); // OK
+    }, (error) => {
+      console.log(error.text);
+    });
   };
 
 
